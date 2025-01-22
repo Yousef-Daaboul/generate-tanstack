@@ -17,18 +17,18 @@ if (!moduleName) {
 const rimrafAsync = promisify(rimraf);
 
 generateConfig(
-  "../downloads/" + moduleName + "Client.ts",
+  "../tmp/downloads/" + moduleName + "Client.ts",
   moduleName.toLowerCase()
 );
 
 export async function generateConfig(inputPath: string, clientName?: string) {
   const folderName = "/" + generateFolderNameWithDateNow();
-  const outputPath = "./output" + folderName + "/";
+  const outputPath = "../tmp/output" + folderName + "/";
 
   if (clientName) {
     await generateClient(inputPath, outputPath, clientName);
 
-    const outputPathTanstack = "./output" + folderName + "/tanstack/";
+    const outputPathTanstack = "../tmp/output" + folderName + "/tanstack/";
     await generateTanstack(
       outputPath + `${clientName}.client.ts`,
       outputPathTanstack,
@@ -36,7 +36,7 @@ export async function generateConfig(inputPath: string, clientName?: string) {
     );
 
     // Compress the folder using 7z
-    const archivePath = `./output${folderName}.7z`;
+    const archivePath = `../tmp/output${folderName}.7z`;
 
     console.log(`ARCHIVE_PATH:${archivePath}`);
 

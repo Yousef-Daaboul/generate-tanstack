@@ -74,7 +74,7 @@ async function executeGenerate(module: string) {
 
   if (archivePath) {
     console.log('Generated archive at:', archivePath);
-    return archivePath.replace("./", "./generate-tanstack-config/");
+    return archivePath.replace("../", "./");
   } else {
     throw new Error('Archive path not found in output');
   }
